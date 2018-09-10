@@ -19,14 +19,14 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/numbers/sort-command")
+@RequestMapping("/numbers")
 public class EndpointTwoController {
 
     @Autowired
     private EndpointTwoService endpointTwoService;
 
 
-        @PostMapping
+        @PostMapping("/sort-command")
         private List<Integer> sortingNumbers(@RequestBody NumbersToSort numbersToSort) {
             return endpointTwoService.sortTheNumbers(numbersToSort);
         }

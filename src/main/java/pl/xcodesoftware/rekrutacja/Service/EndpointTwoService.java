@@ -10,8 +10,9 @@ import java.util.List;
 @Service
 public class EndpointTwoService {
 
-    public List<Integer> sortTheNumbers(NumbersToSort numbersToSort){
+    public List<Integer> sortTheNumbers(NumbersToSort numbers){
 
+        NumbersToSort numbersToSort = new NumbersToSort();
         ObjectMapper objMapper = new ObjectMapper();
         objMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
         numbersToSort = objMapper.readValue(numbersToSort, NumbersToSort.class);

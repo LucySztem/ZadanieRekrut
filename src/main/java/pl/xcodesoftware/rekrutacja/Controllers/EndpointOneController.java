@@ -5,10 +5,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/")
+@RequestMapping("/status")
 public class EndpointOneController {
 
-    @GetMapping("status/ping")
+    @GetMapping("/ping")
     public String getStatus(){
         return "Pong";
     }

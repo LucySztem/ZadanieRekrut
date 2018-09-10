@@ -26,7 +26,7 @@ public class EndpointThreeService {
          String url = "http://api.nbp.pl/api/exchangerates/tables/A?format=json";
 
         ObjectMapper objMapper = new ObjectMapper();
-        CurrencyNBP currenciesFromNBP = objMapper.readValue(url, CurrencyNBP.class);
+        CurrencyNBP currenciesFromNBP = objMapper.readValue("http://api.nbp.pl/api/exchangerates/tables/A?format=json", CurrencyNBP.class);
 
 
         List<Currency> currencies = new ArrayList<Currency>();

@@ -13,13 +13,13 @@ import pl.xcodesoftware.rekrutacja.Service.EndpointThreeService;
 import java.io.IOException;
 
 @RestController
-@RequestMapping("/currencies/get-current-currency-value-command")
+@RequestMapping("/currencies")
 public class EndpointThreeController {
 
     @Autowired
     private EndpointThreeService endpointThreeService;
 
-    @PostMapping
+    @PostMapping("/get-current-currency-value-command")
     public CurrencyValue getCurrencyValue(@RequestBody CurrencyCode currencyCode) throws IOException {
 
         CurrencyValue currencyValueCommand = new CurrencyValue();
