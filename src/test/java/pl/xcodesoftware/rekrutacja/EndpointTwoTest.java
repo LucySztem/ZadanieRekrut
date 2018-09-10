@@ -20,6 +20,7 @@ public class EndpointTwoTest {
     @Autowired
     private EndpointTwoService endpointTwoService;
 
+
     @Test
     public void sortTableOfNumbersByGivenCommand(){
 
@@ -41,4 +42,6 @@ public class EndpointTwoTest {
         Assert.assertEquals("[1,4,6,8]", endpointTwoService.sortTheNumbers(numbersToSortAsc));
         Assert.assertEquals("[8,6,4,1]", endpointTwoService.sortTheNumbers(numbersToSortDesc));
     }
+
+
 }
