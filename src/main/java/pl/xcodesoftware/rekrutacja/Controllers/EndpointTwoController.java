@@ -25,12 +25,7 @@ public class EndpointTwoController {
     @Autowired
     private EndpointTwoService endpointTwoService;
 
-//    @RequestMapping( consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE, method = RequestMethod.POST)
-//    private ResponseEntity sorting(@RequestBody NumbersToSort numbersToSort){
-//
-//        return  new ResponseEntity(endpointTwoService.sortTheNumbers(numbersToSort), HttpStatus.OK)  ;
-//    }
-        @RequestMapping(method = RequestMethod.POST)
+
         @PostMapping
         private List<Integer> sortingNumbers(@RequestBody NumbersToSort numbersToSort) {
 
