@@ -24,6 +24,8 @@ public class EndpointThreeController {
 
         CurrencyValue currencyValueCommand = new CurrencyValue();
         currencyValueCommand = endpointThreeService.getCurrencyValue(currencyCode);
+
+        //zwracam obiekt z wartością szukanej waluty
         return currencyValueCommand ;
     }
 }
