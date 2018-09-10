@@ -1,10 +1,9 @@
 package pl.xcodesoftware.rekrutacja.Service;
 
+import com.fasterxml.jackson.databind.DeserializationFeature;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
 import pl.xcodesoftware.rekrutacja.Entities.NumbersToSort;
-
-import javax.validation.constraints.Null;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
@@ -12,6 +11,10 @@ import java.util.List;
 public class EndpointTwoService {
 
     public List<Integer> sortTheNumbers(NumbersToSort numbersToSort){
+
+        ObjectMapper objMapper = new ObjectMapper();
+        objMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
+        numbersToSort = objMapper.readValue(numbersToSort, NumbersToSort.class);
 
         if(numbersToSort.numbers == null || numbersToSort.order == null ) {
             throw new NullPointerException();

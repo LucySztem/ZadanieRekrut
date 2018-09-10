@@ -28,12 +28,6 @@ public class EndpointTwoController {
 
         @PostMapping
         private List<Integer> sortingNumbers(@RequestBody NumbersToSort numbersToSort) {
-
-//            ObjectMapper objMapper = new ObjectMapper();
-//            objMapper.configure(DeserializationFeature.ACCEPT_SINGLE_VALUE_AS_ARRAY, true);
-//            numbersToSort = objMapper.readValue(, NumbersToSort.class);
-
-
             return endpointTwoService.sortTheNumbers(numbersToSort);
         }
 }

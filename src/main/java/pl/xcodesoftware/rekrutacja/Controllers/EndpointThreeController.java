@@ -10,6 +10,8 @@ import pl.xcodesoftware.rekrutacja.Entities.Currency;
 import pl.xcodesoftware.rekrutacja.Entities.CurrencyValue;
 import pl.xcodesoftware.rekrutacja.Service.EndpointThreeService;
 
+import java.io.IOException;
+
 @RestController
 @RequestMapping("/currencies/get-current-currency-value-command")
 public class EndpointThreeController {
@@ -17,9 +19,8 @@ public class EndpointThreeController {
     @Autowired
     private EndpointThreeService endpointThreeService;
 
-    @PostMapping(consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    //@ResponseStatus(HttpStatus.)
-    public CurrencyValue getCurrencyValue(@RequestBody CurrencyCode currencyCode){
+    @PostMapping
+    public CurrencyValue getCurrencyValue(@RequestBody CurrencyCode currencyCode) throws IOException {
 
         CurrencyValue currencyValueCommand = new CurrencyValue();
         currencyValueCommand = endpointThreeService.getCurrencyValue(currencyCode);
