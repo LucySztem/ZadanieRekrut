@@ -30,10 +30,15 @@ public class EndpointTwoTest {
         listOfNumbers.add(6);
         listOfNumbers.add(4);
 
-        NumbersToSort numbersToSortTest = new NumbersToSort();
-        numbersToSortTest.numbers = listOfNumbers;
-        numbersToSortTest.order = "asc";
+        NumbersToSort numbersToSortAsc = new NumbersToSort();
+        numbersToSortAsc.numbers = listOfNumbers;
+        numbersToSortAsc.order = "asc";
 
-        Assert.assertEquals("{1,4,6,8}", endpointTwoService.sortTheNumbers(numbersToSortTest));
+        NumbersToSort numbersToSortDesc = new NumbersToSort();
+        numbersToSortDesc.numbers = listOfNumbers;
+        numbersToSortDesc.order = "desc";
+
+        Assert.assertEquals("[1,4,6,8]", endpointTwoService.sortTheNumbers(numbersToSortAsc));
+        Assert.assertEquals("[8,6,4,1]", endpointTwoService.sortTheNumbers(numbersToSortDesc));
     }
 }
