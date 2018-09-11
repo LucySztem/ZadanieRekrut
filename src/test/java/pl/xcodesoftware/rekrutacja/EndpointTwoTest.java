@@ -33,7 +33,7 @@ public class EndpointTwoTest {
     }
 
     @Test
-    public void returnRequestedObject(){
+    public void returnNumbersToSortObject(){
 
         EntityExchangeResult<NumbersToSort> result = client.post().uri("/numbers/sort-command")
                 .accept(MediaType.APPLICATION_JSON_UTF8)
