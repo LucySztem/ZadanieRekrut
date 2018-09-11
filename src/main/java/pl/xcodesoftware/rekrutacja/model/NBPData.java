@@ -11,18 +11,18 @@ public class NBPData {
         public String table;
         public String no;
         public Date effectiveDate;
-        public List<Rates> currencyRates;
+        public List<NBPRates> currencyRates;
 
 
 
     public NBPData() {
     }
 
-    public List<Rates> getRates() {
+    public List<NBPRates> getRates() {
         return currencyRates;
     }
 
-    public void setRates(List<Rates> rates) {
+    public void setRates(List<NBPRates> rates) {
         this.currencyRates = rates;
     }
 }
