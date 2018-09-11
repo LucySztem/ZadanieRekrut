@@ -1,14 +1,13 @@
-package pl.xcodesoftware.rekrutacja.Controllers;
+package pl.xcodesoftware.rekrutacja.controllers;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import pl.xcodesoftware.rekrutacja.Entities.CurrencyCode;
-import pl.xcodesoftware.rekrutacja.Entities.Currency;
-import pl.xcodesoftware.rekrutacja.Entities.CurrencyValue;
-import pl.xcodesoftware.rekrutacja.Service.EndpointThreeService;
+import pl.xcodesoftware.rekrutacja.model.CurrencyCode;
+import pl.xcodesoftware.rekrutacja.model.CurrencyValue;
+import pl.xcodesoftware.rekrutacja.service.EndpointThreeService;
 
 import java.io.IOException;
 
@@ -20,12 +19,21 @@ public class EndpointThreeController {
     private EndpointThreeService endpointThreeService;
 
     @PostMapping("/get-current-currency-value-command")
-    public CurrencyValue getCurrencyValue(@RequestBody CurrencyCode currencyCode) throws IOException {
+    public ResponseEntity<?> getCurrencyCurrentValue(@RequestBody CurrencyCode currencyCode) throws IOException {
 
-        CurrencyValue currencyValueCommand = new CurrencyValue();
-        currencyValueCommand = endpointThreeService.getCurrencyValue(currencyCode);
+        if(currencyCode.code == null) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//       chciałam spr czy podany kod zawiera 3 litery
+//        } else if (currencyCode.code.matches("[a-zA-Z]{3}")) {
+//            CurrencyValue curVal = endpointThreeService.getCurrencyValue(currencyCode);
+//            return new ResponseEntity<>(curVal, HttpStatus.OK);
+//        }
+        } else if (currencyCode.code.length() == 3){
+            CurrencyValue curVal = endpointThreeService.getCurrencyValue(currencyCode);
+            return new ResponseEntity<>(curVal, HttpStatus.OK);
+        }else {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }
 
-        //zwracam obiekt z wartością szukanej waluty
-        return currencyValueCommand ;
     }
 }
