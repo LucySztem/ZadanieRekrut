@@ -1,9 +1,7 @@
-package pl.xcodesoftware.rekrutacja.Service;
+package pl.xcodesoftware.rekrutacja.service;
 
-import com.fasterxml.jackson.databind.DeserializationFeature;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.stereotype.Service;
-import pl.xcodesoftware.rekrutacja.Entities.NumbersToSort;
+import pl.xcodesoftware.rekrutacja.model.NumbersToSort;
 import java.util.Collections;
 import java.util.List;
 

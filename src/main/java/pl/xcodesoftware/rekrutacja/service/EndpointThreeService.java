@@ -1,21 +1,19 @@
-package pl.xcodesoftware.rekrutacja.Service;
+package pl.xcodesoftware.rekrutacja.service;
 
 
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.util.JSONPObject;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.client.RestTemplate;
-import pl.xcodesoftware.rekrutacja.Entities.Currency;
-import pl.xcodesoftware.rekrutacja.Entities.CurrencyCode;
-import pl.xcodesoftware.rekrutacja.Entities.CurrencyNBP;
-import pl.xcodesoftware.rekrutacja.Entities.CurrencyValue;
+import pl.xcodesoftware.rekrutacja.model.CurrencyCode;
+import pl.xcodesoftware.rekrutacja.model.CurrencyValue;
+import pl.xcodesoftware.rekrutacja.model.NBPData;
+import pl.xcodesoftware.rekrutacja.model.NBPRates;
+
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.net.URL;
 import java.util.List;
 
 @Service
@@ -24,30 +22,25 @@ public class EndpointThreeService {
     public CurrencyValue getCurrencyValue(CurrencyCode currencyCode) throws IOException {
 
         CurrencyValue currencyValueCommand = new CurrencyValue();
-
+        String url = "http://api.nbp.pl/api/exchangerates/tables/A?format=json";
+        String currCode = currencyCode.code;
 
         ObjectMapper objMapper = new ObjectMapper();
         objMapper.configure(DeserializationFeature.USE_JAVA_ARRAY_FOR_JSON_ARRAY, true);
-        CurrencyNBP currenciesFromNBP = objMapper.readValue("http://api.nbp.pl/api/exchangerates/tables/A?format=json", CurrencyNBP.class);
+
+        // zwracany obiekt to tablica dwuwymiarowa
+        List<NBPData> nbpDataList = objMapper.readValue(new URL(url), new TypeReference<List<NBPData>>() {});
 
 
-        List<Currency> currencies = new ArrayList<Currency>();
-        currencies = currenciesFromNBP.rates;
-
-        if (currencyCode != null) {
-
-            for (Currency c : currencies) {
-                if (c.code.equalsIgnoreCase(currencyCode.code)) {
+            for (NBPRates c : nbpDataList.get(0).rates) {
+                if (c.code.equalsIgnoreCase(currCode)){
                     currencyValueCommand.value = c.mid;
                 } else {
-                    throw new RuntimeException("Nie ma takiej waluty");
+                    throw new RuntimeException("Podany kod waluty jest niepoprawny");
                 }
             }
-        }else {
-            throw new RuntimeException("Proszę podać trzyliterowy kod waluty");
-        }
-            return currencyValueCommand;
 
-
+        return currencyValueCommand;
     }
+
 }
