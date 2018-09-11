@@ -1,5 +1,6 @@
 $(document).ready(function(){
 
+
         var myHeaders = new Headers({
                     'content-type': 'application/json'
                 })
@@ -9,7 +10,7 @@ $(document).ready(function(){
             btnToSend.addEventListener('click', function () {
                 var numbers = $('#numbers').val();
                 var order = $('#order').val();
-            }
+            })
 
                 var objToSend = {
                     numbers: numbers,
