@@ -27,7 +27,7 @@ public class EndpointTwoService {
             throw new RuntimeException("Dane są nie poprawne");
         }
 
-        
+
         return numbersToSort.numbers;
 
     }
