@@ -8,10 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.reactive.server.EntityExchangeResult;
 import org.springframework.test.web.reactive.server.WebTestClient;
-import pl.xcodesoftware.rekrutacja.Entities.CurrencyCode;
-import pl.xcodesoftware.rekrutacja.Entities.NumbersToSort;
-import pl.xcodesoftware.rekrutacja.Service.EndpointTwoService;
+import pl.xcodesoftware.rekrutacja.model.NumbersToSort;
+import pl.xcodesoftware.rekrutacja.service.EndpointTwoService;
 
 
 import java.util.ArrayList;
@@ -33,18 +33,18 @@ public class EndpointTwoTest {
     }
 
     @Test
+    public void returnRequestedObject(){
+
+        EntityExchangeResult<NumbersToSort> result = client.post().uri("/numbers/sort-command")
+                .accept(MediaType.APPLICATION_JSON_UTF8)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(NumbersToSort.class)
+                .returnResult();
+    }
+
+    @Test
     public void sortTableOfNumbersByGivenCommand(){
-
-//        client = client.post().uri("/numbers/sort-command")
-//                .accept(MediaType.APPLICATION_JSON_UTF8)
-//                .exchange()
-//                .expectStatus().isOk()
-//                .expectHeader().contentType(MediaType.APPLICATION_JSON_UTF8)
-//                .exchange()
-//                .expectStatus().isOk()
-//                .expectBody(NumbersToSort.class);
-
-
 
         List<Integer> listOfNumbers = new ArrayList<Integer>();
 
