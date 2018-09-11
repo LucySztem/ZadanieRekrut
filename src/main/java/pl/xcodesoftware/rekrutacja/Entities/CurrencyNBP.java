@@ -16,4 +16,12 @@ public class CurrencyNBP {
 
     public CurrencyNBP() {
     }
+
+    public List<Currency> getRates() {
+        return rates;
+    }
+
+    public void setRates(List<Currency> rates) {
+        this.rates = rates;
+    }
 }
