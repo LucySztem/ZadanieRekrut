@@ -6,7 +6,7 @@ import lombok.Data;
 @Data
 public class CurrencyCode {
 
-    @JsonProperty("code")
+    @JsonProperty("currency")
     public String code;
 
     public CurrencyCode() {

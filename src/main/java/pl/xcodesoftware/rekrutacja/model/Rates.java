@@ -4,12 +4,12 @@ import lombok.Data;
 
 /*Klasa reprezentująca obiekty w tabeli rates ze strony NBP*/
 @Data
-public class Currency {
+public class Rates {
 
     public String currency;
     public String code;
     public double mid;
 
-    public Currency() {
+    public Rates() {
     }
 }
