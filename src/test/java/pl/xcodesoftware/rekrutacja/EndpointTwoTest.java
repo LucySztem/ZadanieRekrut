@@ -35,14 +35,16 @@ public class EndpointTwoTest {
     @Test
     public void sortTableOfNumbersByGivenCommand(){
 
-        client = client.post().uri("/numbers/sort-command")
-                .accept(MediaType.APPLICATION_JSON_UTF8)
-                .exchange()
-                .expectStatus().isOk()
-                .expectHeader().contentType(MediaType.APPLICATION_JSON_UTF8)
-                .exchange()
-                .expectStatus().isOk()
-                .expectBody(NumbersToSort.class);
+//        client = client.post().uri("/numbers/sort-command")
+//                .accept(MediaType.APPLICATION_JSON_UTF8)
+//                .exchange()
+//                .expectStatus().isOk()
+//                .expectHeader().contentType(MediaType.APPLICATION_JSON_UTF8)
+//                .exchange()
+//                .expectStatus().isOk()
+//                .expectBody(NumbersToSort.class);
+
+
 
         List<Integer> listOfNumbers = new ArrayList<Integer>();
 
