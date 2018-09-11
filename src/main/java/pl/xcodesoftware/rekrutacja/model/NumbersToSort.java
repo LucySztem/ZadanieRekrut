@@ -1,4 +1,4 @@
-package pl.xcodesoftware.rekrutacja.Entities;
+package pl.xcodesoftware.rekrutacja.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
