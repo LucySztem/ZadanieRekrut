@@ -26,8 +26,16 @@ public class EndpointTwoController {
     private EndpointTwoService endpointTwoService;
 
 
-        @PostMapping("/sort-command")
-        private List<Integer> sortingNumbers(@RequestBody NumbersToSort numbersToSort) {
-            return endpointTwoService.sortTheNumbers(numbersToSort);
+    @PostMapping("/sort-command")
+    private ResponseEntity<?> sortingNumbers(@RequestBody NumbersToSort numbersToSort) {
+
+        if(numbersToSort.order == null || numbersToSort.order.isEmpty() ) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        }else if (!"ASC".equals(numbersToSort.order) && !"DESC".equals(numbersToSort.order)) {
+            return new ResponseEntity<>(HttpStatus.UNPROCESSABLE_ENTITY);
+        }else {
+            numbersToSort.setNumbers(endpointTwoService.sortTheNumbers(numbersToSort));
+            return new ResponseEntity<>(numbersToSort.getNumbers(), HttpStatus.OK);
         }
+    }
 }

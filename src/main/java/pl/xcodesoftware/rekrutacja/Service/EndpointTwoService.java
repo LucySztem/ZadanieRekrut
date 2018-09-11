@@ -12,23 +12,12 @@ public class EndpointTwoService {
 
     public List<Integer> sortTheNumbers(NumbersToSort numbersToSort){
 
-        if(numbersToSort.order == null ) {
-            throw new NullPointerException() ;
-
-        } else if ( numbersToSort.order.isEmpty()){
-
-            throw new RuntimeException("Order musi być podany");
-
-        } else if (numbersToSort.order.equalsIgnoreCase("ASC")){
+        if (numbersToSort.order.equalsIgnoreCase("ASC")){
             Collections.sort(numbersToSort.numbers);
-        } else if (numbersToSort.order.equalsIgnoreCase("DESC")){
+        } else if (numbersToSort.order.equalsIgnoreCase("DESC")) {
             Collections.sort(numbersToSort.numbers, Collections.reverseOrder());
-        }else {
-            throw new RuntimeException("Dane są nie poprawne");
         }
 
-
         return numbersToSort.numbers;
-
     }
 }
