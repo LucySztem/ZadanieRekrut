@@ -31,16 +31,17 @@ public class EndpointThreeTest {
     @Test
     public void currencyCodeIsNotNull(CurrencyCode givenCode) {
 
+        client = client.post().uri("/numbers/sort-command")
+                .accept(MediaType.APPLICATION_JSON_UTF8)
+                .exchange()
+                .expectStatus().isOk()
+                .expectHeader().contentType(MediaType.APPLICATION_JSON_UTF8)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(CurrencyCode.class);
+
         Assert.notNull(givenCode, "Currency code cannot be null");
 
     }
-
-    @Test
-    public void getValueOfRequestedCurrency(){
-
-
-
-    }
-
 
 }

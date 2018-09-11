@@ -42,7 +42,7 @@ public class EndpointTwoTest {
                 .expectHeader().contentType(MediaType.APPLICATION_JSON_UTF8)
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(CurrencyCode.class);
+                .expectBody(NumbersToSort.class);
 
         List<Integer> listOfNumbers = new ArrayList<Integer>();
 
