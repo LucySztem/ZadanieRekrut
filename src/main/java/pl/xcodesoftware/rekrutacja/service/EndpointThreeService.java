@@ -29,18 +29,21 @@ public class EndpointThreeService {
         objMapper.configure(DeserializationFeature.USE_JAVA_ARRAY_FOR_JSON_ARRAY, true);
 
         // zwracany obiekt to tablica dwuwymiarowa
-        List<NBPData> nbpDataList = objMapper.readValue(new URL(url), new TypeReference<List<NBPData>>() {});
+        List<NBPData> nbpDataList = objMapper.readValue(new URL(url), new TypeReference<List<NBPData>>() {
+        });
 
 
-            for (NBPRates c : nbpDataList.get(0).rates) {
-                if (c.code.equalsIgnoreCase(currCode)){
-                    currencyValueCommand.value = c.mid;
-                } else {
-                    throw new RuntimeException("Podany kod waluty jest niepoprawny");
-                }
+        for (NBPRates c : nbpDataList.get(0).rates) {
+            if (c.code.equalsIgnoreCase(currCode)) {
+                currencyValueCommand.value = c.mid;
+                // jesli znajdzie podana walute to ja zwroci, jesli nie spelni warunku wychodzi z "if"
+                return currencyValueCommand;
             }
+        }
+            throw new RuntimeException("Podany kod waluty jest niepoprawny");
 
-        return currencyValueCommand;
+
     }
+
 
 }
