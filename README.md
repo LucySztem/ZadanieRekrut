@@ -7,8 +7,8 @@ BackEnd napisany w Java z użyciem framework Spring, obsługuje 3 endpointy:
   - odpowiada na sztywno Stringiem "pong";
 
 2) EndpointTwo (path:  /numbers/sort-command)
-- przyjmuje obiekt zawierający tablice integerów oraz String z jaką kolejnością mają zostać posortwoane liczby (asc lub desc)
-- odpowiada
+- przyjmuje obiekt zawierający tablice int oraz String określający kolejność sortwania liczb (asc lub desc)
+- jako odp uzyskujemy posortowaną tablice liczb
 
 3) EndpointThree (path:  /currencies/get-current-currency-value-command)
 - przyjmuje obiekt zawierający String z wartością szukanej waluty
